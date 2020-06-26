@@ -1,29 +1,47 @@
-<div {{action 'tagField' this.userIcon 'one'}} style='width:100px;height:100px;padding:10px;'>
-  {{this.one}}
-</div>
-<div {{action 'tagField' this.userIcon 'two'}} style='width:100px;height:100px;padding:10px;'>
-  {{this.two}}
-</div>
-<div {{action 'tagField' this.userIcon 'three'}} style='width:100px;height:100px;padding:10px;'>
-  {{this.three}}
-</div>
+<div class="mdc-layout-grid mdc-layout-grid--fixed-column-width mdc-top-app-bar--fixed-adjust">
+  <div class="mdc-layout-grid__inner">
 
-<div {{action 'tagField' this.userIcon 'four'}} style='width:100px;height:100px;padding:10px;'>
-  {{this.four}}
-</div>
-<div {{action 'tagField' this.userIcon 'five'}} style='width:100px;height:100px;padding:10px;'>
-  {{this.five}}
-</div>
-<div {{action 'tagField' this.userIcon 'six'}} style='width:100px;height:100px;padding:10px;'>
-  {{this.six}}
-</div>
+    <div {{action 'tagField' this.userIcon 'one'}}
+      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
+      {{this.one}}
+    </div>
+    <div {{action 'tagField' this.userIcon 'two'}}
+      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
+      {{this.two}}
+    </div>
+    <div {{action 'tagField' this.userIcon 'three'}}
+      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
+      {{this.three}}
+    </div>
+  </div>
 
-<div {{action 'tagField' this.userIcon 'seven'}} style='width:100px;height:100px;padding:10px;'>
-  {{this.seven}}
-</div>
-<div {{action 'tagField' this.userIcon 'eight'}} style='width:100px;height:100px;padding:10px;'>
-  {{this.eight}}
-</div>
-<div {{action 'tagField' this.userIcon 'nine'}} style='width:100px;height:100px;padding:10px;'>
-  {{this.nine}}
+  <div class="mdc-layout-grid__inner">
+    <div {{action 'tagField' this.userIcon 'four'}}
+      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
+      {{this.four}}
+    </div>
+    <div {{action 'tagField' this.userIcon 'five'}}
+      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
+      {{this.five}}
+    </div>
+    <div {{action 'tagField' this.userIcon 'six'}}
+      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
+      {{this.six}}
+    </div>
+  </div>
+
+  <div class="mdc-layout-grid__inner">
+    <div {{action 'tagField' this.userIcon 'seven'}}
+      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
+      {{this.seven}}
+    </div>
+    <div {{action 'tagField' this.userIcon 'eight'}}
+      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
+      {{this.eight}}
+    </div>
+    <div {{action 'tagField' this.userIcon 'nine'}}
+      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
+      {{this.nine}}
+    </div>
+  </div>
 </div>
