@@ -4,6 +4,8 @@ import { tracked } from '@glimmer/tracking';
 import { get, set } from '@ember/object';
 
 
+function isNull (value) { value == null }
+
 export default class TicTacToeComponent extends Component {
   @tracked userIcon = 'X';
   @tracked computerIcon = 'O';
@@ -15,43 +17,32 @@ export default class TicTacToeComponent extends Component {
   @tracked playerWins = 0;
   @tracked computerWins = 0;
 
-  @tracked one = null;
-  @tracked two = null;
-  @tracked three = null;
+  @tracked board = [null, null, null, null, null, null, null, null, null];
 
-  @tracked four = null;
-  @tracked five = null;
-  @tracked six = null;
-
-  @tracked seven = null;
-  @tracked eight = null;
-  @tracked nine = null;
-
-  @tracked board = { 1: 'one', 2: 'two', 3: 'three', 4: 'four', 5: 'five', 6: 'six', 7: 'seven', 8: 'eight', 9: 'nine' };
-  @tracked boardMap = { 'one': 1, 'two': 2, 'three': 3, 'four': 4, 'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9 };
   @tracked winningCombos = [
-    [1, 2, 3],
-    [4, 5, 6],
-    [7, 8, 9],
-    [1, 5, 9],
-    [3, 5, 7],
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+    [0, 3, 6],
     [1, 4, 7],
-    [2, 5, 8],
-    [3, 6, 9]
+    [2, 5, 8]
   ]
 
   @action
-  tagField (symbol, box) {
-    if (get(this, box) == null) {
-      set(this, box, symbol);
-      this.userPlayed.pushObject(this.boardMap[box])
+  tagField (icon, index) {
+    if (this.board[index] == null) {
+      this.board.replace(index, 1, [icon])
+      this.userPlayed.pushObject(index)
 
       if (this.checkWinningCombo(this.userPlayed) == true) {
         this.result = 'player';
         this.playerWins = this.playerWins + 1;
         this.showReset = true;
         this.updatePlayerList();
-      } else {
+      }
+      else {
         this.makeComputerMove();
       }
     }
@@ -74,19 +65,17 @@ export default class TicTacToeComponent extends Component {
   }
 
   makeComputerMove () {
-    let board = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    let board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
     board.removeObjects(this.userPlayed)
     board.removeObjects(this.computerPlayed)
-
 
     if (board.length !== 0) {
       let random = Math.floor(Math.random() * board.length);
       let computerChoice = board[random];
       this.computerPlayed.pushObject(computerChoice)
+      this.board.replace(computerChoice, 1, [this.computerIcon])
 
-      let box = this.board[computerChoice]
-      set(this, box, this.computerIcon)
 
       if (this.checkWinningCombo(this.computerPlayed) == true) {
         this.result = 'computer';
@@ -109,16 +98,8 @@ export default class TicTacToeComponent extends Component {
   resetGame () {
     this.result = null;
     this.showReset = false;
-    this.computerPlayed = [];
-    this.userPlayed = [];
-    this.one = null;
-    this.two = null;
-    this.three = null;
-    this.four = null;
-    this.five = null;
-    this.six = null;
-    this.seven = null;
-    this.eight = null;
-    this.nine = null;
+    this.computerPlayed.clear();
+    this.userPlayed.clear();
+    this.board = [null, null, null, null, null, null, null, null, null];
   }
 }
