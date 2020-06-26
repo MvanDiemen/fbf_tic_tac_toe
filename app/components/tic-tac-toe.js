@@ -11,6 +11,9 @@ export default class TicTacToeComponent extends Component {
   @tracked computerPlayed = [];
   @tracked showReset = false;
   @tracked result = null;
+  @tracked playerList = [];
+  @tracked playerWins = 0;
+  @tracked computerWins = 0;
 
   @tracked one = null;
   @tracked two = null;
@@ -45,7 +48,9 @@ export default class TicTacToeComponent extends Component {
 
       if (this.checkWinningCombo(this.userPlayed) == true) {
         this.result = 'player';
+        this.playerWins = this.playerWins + 1;
         this.showReset = true;
+        this.updatePlayerList();
       } else {
         this.makeComputerMove();
       }
@@ -85,12 +90,19 @@ export default class TicTacToeComponent extends Component {
 
       if (this.checkWinningCombo(this.computerPlayed) == true) {
         this.result = 'computer';
+        this.computerWins = this.computerWins + 1;
         this.showReset = true;
+
+        this.updatePlayerList();
       }
     } else {
       this.result = 'draw';
       this.showReset = true;
     }
+  }
+
+  updatePlayerList () {
+    this.playerList = [{ name: `Player`, wins: this.playerWins }, { name: `Computer`, wins: this.computerWins }];
   }
 
   @action
