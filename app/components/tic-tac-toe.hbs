@@ -1,3 +1,7 @@
+{{#if this.showReset}}
+{{game-over-modal reset=(fn this.resetGame) show=this.showReset title=this.result}}
+{{/if}}
+
 <div class="mdc-layout-grid mdc-layout-grid--fixed-column-width mdc-top-app-bar--fixed-adjust">
   <div class="mdc-layout-grid__inner">
 

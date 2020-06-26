@@ -9,6 +9,8 @@ export default class TicTacToeComponent extends Component {
   @tracked computerIcon = 'O';
   @tracked userPlayed = [];
   @tracked computerPlayed = [];
+  @tracked showReset = false;
+  @tracked result = null;
 
   @tracked one = null;
   @tracked two = null;
@@ -38,11 +40,12 @@ export default class TicTacToeComponent extends Component {
   @action
   tagField (symbol, box) {
     if (get(this, box) == null) {
-      this.userPlayed.pushObject(this.boardMap[box])
       set(this, box, symbol);
+      this.userPlayed.pushObject(this.boardMap[box])
 
       if (this.checkWinningCombo(this.userPlayed) == true) {
-        alert('You won!');
+        this.result = 'player';
+        this.showReset = true;
       } else {
         this.makeComputerMove();
       }
@@ -81,8 +84,29 @@ export default class TicTacToeComponent extends Component {
       set(this, box, this.computerIcon)
 
       if (this.checkWinningCombo(this.computerPlayed) == true) {
-        alert('The computer won!');
+        this.result = 'computer';
+        this.showReset = true;
       }
+    } else {
+      this.result = 'draw';
+      this.showReset = true;
     }
+  }
+
+  @action
+  resetGame () {
+    this.result = null;
+    this.showReset = false;
+    this.computerPlayed = [];
+    this.userPlayed = [];
+    this.one = null;
+    this.two = null;
+    this.three = null;
+    this.four = null;
+    this.five = null;
+    this.six = null;
+    this.seven = null;
+    this.eight = null;
+    this.nine = null;
   }
 }
