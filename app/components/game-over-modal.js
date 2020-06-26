@@ -2,12 +2,12 @@ import Component from '@glimmer/component';
 import { action } from '@ember/object';
 
 export default class GameOverModalComponent extends Component {
-  showTitle (title) {
-    if (title === 'player') {
+  get showTitle () {
+    if (this.args.title === 'player') {
       return `You won!`;
-    } else if (title === 'computer') {
+    } else if (this.args.title === 'computer') {
       return `Computer won :O`;
-    } else if (title === 'draw') {
+    } else if (this.args.title === 'draw') {
       return `It's a draw...`;
     }
   }
