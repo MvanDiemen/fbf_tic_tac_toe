@@ -1,51 +1,69 @@
 {{#if this.showReset}}
-{{game-over-modal reset=(fn this.resetGame) show=this.showReset title=this.result}}
+{{game-over-modal reset=(fn this.resetGame) title=this.result}}
 {{/if}}
 
-<div class="mdc-layout-grid mdc-layout-grid--fixed-column-width mdc-top-app-bar--fixed-adjust">
+<div class="mdc-layout-grid mdc-top-app-bar--fixed-adjust">
   <div class="mdc-layout-grid__inner">
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-6">
+      <div class="mdc-layout-grid__inner">
 
-    <div {{action 'tagField' this.userIcon 'one'}}
-      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
-      {{this.one}}
-    </div>
-    <div {{action 'tagField' this.userIcon 'two'}}
-      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
-      {{this.two}}
-    </div>
-    <div {{action 'tagField' this.userIcon 'three'}}
-      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
-      {{this.three}}
-    </div>
-  </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-4">
+          <div {{action 'tagField' this.userIcon 'one'}} class='square-card mdc-card mdc-card--outlined'>
+            {{this.one}}
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-4">
+          <div {{action 'tagField' this.userIcon 'two'}} class='square-card mdc-card mdc-card--outlined'>
+            {{this.two}}
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-4">
+          <div {{action 'tagField' this.userIcon 'three'}} class='square-card mdc-card mdc-card--outlined'>
+            {{this.three}}
+          </div>
+        </div>
+      </div>
 
-  <div class="mdc-layout-grid__inner">
-    <div {{action 'tagField' this.userIcon 'four'}}
-      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
-      {{this.four}}
-    </div>
-    <div {{action 'tagField' this.userIcon 'five'}}
-      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
-      {{this.five}}
-    </div>
-    <div {{action 'tagField' this.userIcon 'six'}}
-      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
-      {{this.six}}
-    </div>
-  </div>
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-4">
 
-  <div class="mdc-layout-grid__inner">
-    <div {{action 'tagField' this.userIcon 'seven'}}
-      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
-      {{this.seven}}
+          <div {{action 'tagField' this.userIcon 'four'}} class='square-card mdc-card mdc-card--outlined'>
+            {{this.four}}
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-4">
+          <div {{action 'tagField' this.userIcon 'five'}} class='square-card mdc-card mdc-card--outlined'>
+            {{this.five}}
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-4">
+          <div {{action 'tagField' this.userIcon 'six'}} class='square-card mdc-card mdc-card--outlined'>
+            {{this.six}}
+          </div>
+        </div>
+      </div>
+
+      <div class="mdc-layout-grid__inner">
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-4">
+          <div {{action 'tagField' this.userIcon 'seven'}} class='square-card mdc-card mdc-card--outlined'>
+            {{this.seven}}
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-4">
+          <div {{action 'tagField' this.userIcon 'eight'}} class='square-card mdc-card mdc-card--outlined'>
+            {{this.eight}}
+          </div>
+        </div>
+        <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-4">
+          <div {{action 'tagField' this.userIcon 'nine'}} class='square-card mdc-card mdc-card--outlined'>
+            {{this.nine}}
+          </div>
+        </div>
+      </div>
     </div>
-    <div {{action 'tagField' this.userIcon 'eight'}}
-      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
-      {{this.eight}}
-    </div>
-    <div {{action 'tagField' this.userIcon 'nine'}}
-      class='mdc-layout-grid__cell square-card mdc-card mdc-card--outlined'>
-      {{this.nine}}
+
+    <div class="mdc-layout-grid__cell mdc-layout-grid__cell-span-6">
+      {{score-list playerList=this.playerList}}
     </div>
   </div>
 </div>
