@@ -1,0 +1,10 @@
+<ul class="mdc-list mdc-list--two-line">
+  {{#each @playerList as |player|}}
+  <li class="mdc-list-item">
+    <span class="mdc-list-item__text">
+      <span class="mdc-list-item__primary-text">{{player.name}}</span>
+      <span class="mdc-list-item__secondary-text">{{player.wins}}</span>
+    </span>
+  </li>
+  {{/each}}
+</ul>
