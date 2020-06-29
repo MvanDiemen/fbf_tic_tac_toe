@@ -1,16 +1,18 @@
 class PlayersController < ApplicationController
+  deserializable_resource :player, only: [:create, :update]
   before_action :set_player, only: [:show, :edit, :update, :destroy]
 
   # GET /players
   # GET /players.json
   def index
     @players = Player.all
-    render json: PlayerSerializer.new(@players).serialized_json
+    render jsonapi: @players, fields: {players: [:id, :name, :wins]}
   end
 
   # GET /players/1
   # GET /players/1.json
   def show
+    render jsonapi: @player, fields: {players: [:id, :name, :wins]}
   end
 
   # GET /players/new
@@ -30,7 +32,7 @@ class PlayersController < ApplicationController
     respond_to do |format|
       if @player.save
         format.html { redirect_to @player, notice: 'Player was successfully created.' }
-        format.json { render :show, status: :created, location: @player }
+        format.json { render jsonapi: @player, fields: {players: [:id, :name, :wins]}, status: :created, location: @player }
       else
         format.html { render :new }
         format.json { render json: @player.errors, status: :unprocessable_entity }
@@ -65,11 +67,11 @@ class PlayersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_player
-      @player = Player.find(params[:id])
+      @player = Player.find(params["id"].to_i)
     end
 
     # Only allow a list of trusted parameters through.
     def player_params
-      params.require(:player).permit(:name, :wins)
+      params.require(:data).require(:attributes).permit(:wins, :name)
     end
 end
