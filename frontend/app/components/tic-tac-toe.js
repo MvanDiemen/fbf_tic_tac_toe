@@ -86,6 +86,7 @@ export default class TicTacToeComponent extends Component {
   addWinToPlayer () {
     let player = this.store.findRecord('player', this.selectedPlayer).then(function (player) {
       player.wins = player.wins + 1;
+      player.save();
     });
   }
 
