@@ -17,15 +17,7 @@ export default class SelectUserComponent extends Component {
   addUser () {
     let newUser = this.store.createRecord('player', { name: this.userName, wins: 0 });
 
-    var onSuccess = function (user) {
-      this.args.select(user.id);
-    };
-
-    var onFail = function (user) {
-      alert(`cannot create ${user.name}`);
-    };
-
-    newUser.save().then(onSuccess, onFail);
+    newUser.save();
   }
 
   @action

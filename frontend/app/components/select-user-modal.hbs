@@ -7,7 +7,7 @@
         <ul class="mdc-list">
           {{#each this.playerList as |player|}}
           <li {{on "click" (fn this.select player.id)}} class="mdc-list-item">
-            <span class="mdc-list-item__text">{{player.name}} - {{player.id}}</span>
+            <span class="mdc-list-item__text">{{player.name}}</span>
           </li>
           {{/each}}
           <li class="mdc-list-item">
