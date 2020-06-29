@@ -10,6 +10,14 @@
             <span class="mdc-list-item__text">{{player.name}} - {{player.id}}</span>
           </li>
           {{/each}}
+          <li class="mdc-list-item">
+            <label class="mdc-text-field mdc-text-field--filled">
+              <span class="mdc-text-field__ripple"></span>
+              {{input value=this.userName class="mdc-text-field__input"}}
+              <span class="mdc-line-ripple"></span>
+            </label>
+            <button {{on "click" this.addUser}} class="mdc-button">Create user</button>
+          </li>
         </ul>
       </div>
     </div>
