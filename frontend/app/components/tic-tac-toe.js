@@ -1,20 +1,17 @@
 import Component from '@glimmer/component';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
-import { get, set } from '@ember/object';
-
-function isNull (value) { value == null }
+import { inject as service } from '@ember/service'
 
 export default class TicTacToeComponent extends Component {
+  @service store;
+  @tracked selectedPlayer = 1;
   @tracked userIcon = 'X';
-  @tracked computerIcon = 'O';
+  @tracked opponentIcon = 'O';
   @tracked userPlayed = [];
-  @tracked computerPlayed = [];
+  @tracked opponentPlayed = [];
   @tracked showReset = false;
   @tracked result = null;
-  @tracked playerList = [];
-  @tracked playerWins = 0;
-  @tracked computerWins = 0;
 
   @tracked board = [null, null, null, null, null, null, null, null, null];
 
@@ -37,9 +34,8 @@ export default class TicTacToeComponent extends Component {
 
       if (this.checkWinningCombo(this.userPlayed) == true) {
         this.result = 'player';
-        this.playerWins = this.playerWins + 1;
+        this.addWinToPlayer();
         this.showReset = true;
-        this.updatePlayerList();
       }
       else {
         this.makeComputerMove();
@@ -67,21 +63,19 @@ export default class TicTacToeComponent extends Component {
     let board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
 
     board.removeObjects(this.userPlayed)
-    board.removeObjects(this.computerPlayed)
+    board.removeObjects(this.opponentPlayed)
 
     if (board.length !== 0) {
       let random = Math.floor(Math.random() * board.length);
       let computerChoice = board[random];
-      this.computerPlayed.pushObject(computerChoice)
-      this.board.replace(computerChoice, 1, [this.computerIcon])
+      this.opponentPlayed.pushObject(computerChoice)
+      this.board.replace(computerChoice, 1, [this.opponentIcon])
 
 
-      if (this.checkWinningCombo(this.computerPlayed) == true) {
+      if (this.checkWinningCombo(this.opponentPlayed) == true) {
         this.result = 'computer';
-        this.computerWins = this.computerWins + 1;
+        // this.computerWins = this.computerWins + 1;
         this.showReset = true;
-
-        this.updatePlayerList();
       }
     } else {
       this.result = 'draw';
@@ -89,15 +83,17 @@ export default class TicTacToeComponent extends Component {
     }
   }
 
-  updatePlayerList () {
-    this.playerList = [{ name: `Player`, wins: this.playerWins }, { name: `Computer`, wins: this.computerWins }];
+  addWinToPlayer () {
+    let player = this.store.findRecord('player', this.selectedPlayer).then(function (player) {
+      player.wins = player.wins + 1;
+    });
   }
 
   @action
   resetGame () {
     this.result = null;
     this.showReset = false;
-    this.computerPlayed.clear();
+    this.opponentPlayed.clear();
     this.userPlayed.clear();
     this.board = [null, null, null, null, null, null, null, null, null];
   }
