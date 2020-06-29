@@ -1,3 +1,7 @@
+{{#if this.showSelectUser}}
+{{select-user-modal select=(fn this.selectUser)}}
+{{/if}}
+
 {{#if this.showReset}}
 {{game-over-modal reset=(fn this.resetGame) title=this.result}}
 {{/if}}

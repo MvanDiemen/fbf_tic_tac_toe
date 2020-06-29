@@ -5,12 +5,13 @@ import { inject as service } from '@ember/service'
 
 export default class TicTacToeComponent extends Component {
   @service store;
-  @tracked selectedPlayer = 1;
+  @tracked selectedUser = null;
   @tracked userIcon = 'X';
   @tracked opponentIcon = 'O';
   @tracked userPlayed = [];
   @tracked opponentPlayed = [];
   @tracked showReset = false;
+  @tracked showSelectUser = true;
   @tracked result = null;
 
   @tracked board = [null, null, null, null, null, null, null, null, null];
@@ -84,7 +85,7 @@ export default class TicTacToeComponent extends Component {
   }
 
   addWinToPlayer () {
-    let player = this.store.findRecord('player', this.selectedPlayer).then(function (player) {
+    let player = this.store.findRecord('player', this.selectedUser).then(function (player) {
       player.wins = player.wins + 1;
       player.save();
     });
@@ -97,5 +98,11 @@ export default class TicTacToeComponent extends Component {
     this.opponentPlayed.clear();
     this.userPlayed.clear();
     this.board = [null, null, null, null, null, null, null, null, null];
+  }
+
+  @action
+  selectUser (id) {
+    this.selectedUser = id;
+    this.showSelectUser = false;
   }
 }
