@@ -1,0 +1,26 @@
+<div class="mdc-dialog mdc-dialog--open">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface" role="alertdialog" aria-modal="true" aria-labelledby="my-dialog-title"
+      aria-describedby="my-dialog-content">
+      <h2 class="mdc-dialog__title" id="my-dialog-title">Choose a User</h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        <ul class="mdc-list">
+          {{#each this.playerList as |player|}}
+          <li {{on "click" (fn this.select player.id)}} class="mdc-list-item">
+            <span class="mdc-list-item__text">{{player.name}}</span>
+          </li>
+          {{/each}}
+          <li class="mdc-list-item">
+            <label class="mdc-text-field mdc-text-field--filled">
+              <span class="mdc-text-field__ripple"></span>
+              {{input value=this.userName class="mdc-text-field__input"}}
+              <span class="mdc-line-ripple"></span>
+            </label>
+            <button {{on "click" this.addUser}} class="mdc-button">Create user</button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
